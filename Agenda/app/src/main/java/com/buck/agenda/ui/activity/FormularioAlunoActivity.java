@@ -1,13 +1,11 @@
 package com.buck.agenda.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.buck.agenda.R;
 import com.buck.agenda.dao.AlunoDAO;
@@ -19,6 +17,8 @@ public class FormularioAlunoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_aluno);
+
+        setTitle("Novo aluno");
 
         final AlunoDAO dao = new AlunoDAO();
 
