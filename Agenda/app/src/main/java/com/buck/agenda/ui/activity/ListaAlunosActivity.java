@@ -4,6 +4,7 @@ import static com.buck.agenda.ui.activity.ConstantesActivities.CHAVE_ALUNO;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -59,6 +60,14 @@ public class ListaAlunosActivity extends AppCompatActivity {
         final List<Aluno> alunos = dao.todos();
         configuraAdapter(listaDeAlunos, alunos);
         configuraListenerDeCliquePorItem(listaDeAlunos);
+        listaDeAlunos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Aluno alunoEscolhido = (Aluno) parent.getItemAtPosition(position);
+                dao.remove(alunoEscolhido);
+                return true;
+            }
+        });
     }
 
     private void configuraListenerDeCliquePorItem(ListView listaDeAlunos) {
