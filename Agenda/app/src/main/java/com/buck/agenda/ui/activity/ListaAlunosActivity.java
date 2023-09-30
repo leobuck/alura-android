@@ -85,6 +85,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     private void atualizaAlunos() {
         adapter.clear();
         adapter.addAll(dao.todos());
+        adapter.notifyDataSetChanged();
     }
 
     private void configuraLista() {
@@ -97,6 +98,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     private void remove(Aluno aluno) {
         dao.remove(aluno);
         adapter.remove(aluno);
+        adapter.notifyDataSetChanged();
     }
 
     private void configuraListenerDeCliquePorItem(ListView listaDeAlunos) {
