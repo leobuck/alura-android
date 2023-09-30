@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.buck.agenda.R;
 import com.buck.agenda.dao.AlunoDAO;
 import com.buck.agenda.model.Aluno;
+import com.buck.agenda.ui.adapter.ListaAlunosAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     public static final String TITULO_APPBAR = "Lista de alunos";
     private final AlunoDAO dao = new AlunoDAO();
-    private ArrayAdapter<Aluno> adapter;
+    private ListaAlunosAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -115,34 +116,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }
 
     private void configuraAdapter(ListView listaDeAlunos) {
-        adapter = new ArrayAdapter<>(
-                this,
-                R.layout.item_aluno);
-        listaDeAlunos.setAdapter(new BaseAdapter() {
-            private final List<Aluno> alunos = new ArrayList<>();
-
-            @Override
-            public int getCount() {
-                return alunos.size();
-            }
-
-            @Override
-            public Aluno getItem(int position) {
-                return alunos.get(position);
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return alunos.get(position).getId();
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View viewCriada = LayoutInflater
-                        .from(ListaAlunosActivity.this)
-                        .inflate(R.layout.item_aluno, parent);
-                return viewCriada;
-            }
-        });
+        adapter = new ListaAlunosAdapter(this);
+        listaDeAlunos.setAdapter(adapter);
     }
 }
