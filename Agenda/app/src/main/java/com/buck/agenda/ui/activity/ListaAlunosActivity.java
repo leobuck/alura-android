@@ -4,15 +4,10 @@ import static com.buck.agenda.ui.activity.ConstantesActivities.CHAVE_ALUNO;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -24,9 +19,6 @@ import com.buck.agenda.dao.AlunoDAO;
 import com.buck.agenda.model.Aluno;
 import com.buck.agenda.ui.adapter.ListaAlunosAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
@@ -83,9 +75,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }
 
     private void atualizaAlunos() {
-        adapter.clear();
-        adapter.addAll(dao.todos());
-        adapter.notifyDataSetChanged();
+        adapter.atualiza(dao.todos());
     }
 
     private void configuraLista() {
@@ -98,7 +88,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
     private void remove(Aluno aluno) {
         dao.remove(aluno);
         adapter.remove(aluno);
-        adapter.notifyDataSetChanged();
     }
 
     private void configuraListenerDeCliquePorItem(ListView listaDeAlunos) {
