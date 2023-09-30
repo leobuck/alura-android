@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +24,7 @@ import com.buck.agenda.dao.AlunoDAO;
 import com.buck.agenda.model.Aluno;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListaAlunosActivity extends AppCompatActivity {
@@ -114,6 +118,31 @@ public class ListaAlunosActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(
                 this,
                 R.layout.item_aluno);
-        listaDeAlunos.setAdapter(adapter);
+        listaDeAlunos.setAdapter(new BaseAdapter() {
+            private final List<Aluno> alunos = new ArrayList<>();
+
+            @Override
+            public int getCount() {
+                return alunos.size();
+            }
+
+            @Override
+            public Aluno getItem(int position) {
+                return alunos.get(position);
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return alunos.get(position).getId();
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View viewCriada = LayoutInflater
+                        .from(ListaAlunosActivity.this)
+                        .inflate(R.layout.item_aluno, parent);
+                return viewCriada;
+            }
+        });
     }
 }
