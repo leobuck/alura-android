@@ -5,5 +5,5 @@
         android:id="@+id/activity_lista_alunos_menu_remover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Remover" />
+        android:title="@string/remover" />
 </menu>
