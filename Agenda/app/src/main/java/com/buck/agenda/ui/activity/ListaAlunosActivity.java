@@ -21,7 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class ListaAlunosActivity extends AppCompatActivity {
 
     private static final String TITULO_APPBAR = "Lista de alunos";
-    private final ListaAlunosView listaAlunosView = new ListaAlunosView();
+    private final ListaAlunosView listaAlunosView = new ListaAlunosView(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
